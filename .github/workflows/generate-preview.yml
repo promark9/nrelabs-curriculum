@@ -5,14 +5,23 @@ on:
     branches: [master]
     types: 
       - completed
+inputs:
+
+  # TODO - note in https://github.blog/2020-08-03-github-actions-improvements-for-fork-and-pull-request-workflows/ this can be invoked
+  # via a webhook as well. This may be necessary to communicate the pr number as an input - you MUST have this.
+  #
+  # TODO - for security reasons (that we will absolutely want) this will run on the default branch. However we still want to check out the PR branch
+  # so we can build the images. So we need the PR number
+  pr_number:
+    description: 'Number of the PR to check out'
+    required: true
 
 jobs:
   prebuild:
     runs-on: ubuntu-latest
     steps:
 
-    # TODO - for security reasons (that we will absolutely want) this will run on the default branch. However we still want to check out the PR branch
-    # so we can build the images.
+
 
     - uses: actions/checkout@v2
 
